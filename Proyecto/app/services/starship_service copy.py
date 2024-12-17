@@ -62,80 +62,80 @@ class StarshipService:
 
         return starships_with_pilots
 
-# CREACION CLASE PILOTO PARA OBTENER LOS DATOS 
-class PilotService:
-    def get_pilot_details(self):
-        pilots = []
-        url = StarshipService.API_URLP  # Usamos la URL de pilotos de StarshipService
+# # CREACION CLASE PILOTO PARA OBTENER LOS DATOS 
+# class PilotService:
+#     def get_pilot_details(self):
+#         pilots = []
+#         url = StarshipService.API_URLP  # Usamos la URL de pilotos de StarshipService
 
-        while url:
-            response = requests.get(url)
-            if response.status_code == 200:
-                pilot_data = response.json().get('results', [])
-                pilots.extend(pilot_data)
-                url = response.json().get('next')
-            else:
-                return {"error": "No se pudieron obtener los detalles de los pilotos."}
+#         while url:
+#             response = requests.get(url)
+#             if response.status_code == 200:
+#                 pilot_data = response.json().get('results', [])
+#                 pilots.extend(pilot_data)
+#                 url = response.json().get('next')
+#             else:
+#                 return {"error": "No se pudieron obtener los detalles de los pilotos."}
 
-        ordered_data = [
-            {
-                "Nombre": pilot.get("name"),
-                "Altura": pilot.get("height"),
-                "Género": pilot.get("gender"),
-                "Peso": pilot.get("mass"),
-                "Año de nacimiento": pilot.get("birth_year"),
-                "Nombre de la especie": self.get_species_name(pilot.get("species")),
-                "Vehículos pilotados": self.get_vehicles_names(pilot.get("vehicles")),
-                "Planeta de origen": self.get_homeworld_name(pilot.get("homeworld"))
-            }
-            for pilot in pilots
-        ]
-        return ordered_data
+#         ordered_data = [
+#             {
+#                 "Nombre": pilot.get("name"),
+#                 "Altura": pilot.get("height"),
+#                 "Género": pilot.get("gender"),
+#                 "Peso": pilot.get("mass"),
+#                 "Año de nacimiento": pilot.get("birth_year"),
+#                 "Nombre de la especie": self.get_species_name(pilot.get("species")),
+#                 "Vehículos pilotados": self.get_vehicles_names(pilot.get("vehicles")),
+#                 "Planeta de origen": self.get_homeworld_name(pilot.get("homeworld"))
+#             }
+#             for pilot in pilots
+#         ]
+#         return ordered_data
 
-    def get_pilot_details_from_url(self, url):
-        response = requests.get(url)
-        if response.status_code == 200:
-            pilot = response.json()
-            return {
-                "Nombre": pilot.get("name"),
-                "Género": pilot.get("gender"),
-                "Año de nacimiento": pilot.get("birth_year"),
-                "Altura": pilot.get("height"),
-                "Peso": pilot.get("mass")
-            }
-        return {}
+#     def get_pilot_details_from_url(self, url):
+#         response = requests.get(url)
+#         if response.status_code == 200:
+#             pilot = response.json()
+#             return {
+#                 "Nombre": pilot.get("name"),
+#                 "Género": pilot.get("gender"),
+#                 "Año de nacimiento": pilot.get("birth_year"),
+#                 "Altura": pilot.get("height"),
+#                 "Peso": pilot.get("mass")
+#             }
+#         return {}
 
-    def get_species_name(self, species_urls):
-        species_names = []
-        for species_url in species_urls:
-            response = requests.get(species_url)
-            if response.status_code == 200:
-                species_names.append(response.json().get("name", "Desconocido"))
-        return species_names if species_names else ["Desconocido"]
+#     def get_species_name(self, species_urls):
+#         species_names = []
+#         for species_url in species_urls:
+#             response = requests.get(species_url)
+#             if response.status_code == 200:
+#                 species_names.append(response.json().get("name", "Desconocido"))
+#         return species_names if species_names else ["Desconocido"]
 
-    def get_vehicles_names(self, vehicles_urls):
-        vehicles = []
-        for vehicle_url in vehicles_urls:
-            response = requests.get(vehicle_url)
-            if response.status_code == 200:
-                vehicles.append(response.json().get("name", "Desconocido"))
-        return vehicles
+#     def get_vehicles_names(self, vehicles_urls):
+#         vehicles = []
+#         for vehicle_url in vehicles_urls:
+#             response = requests.get(vehicle_url)
+#             if response.status_code == 200:
+#                 vehicles.append(response.json().get("name", "Desconocido"))
+#         return vehicles
 
-    def get_homeworld_name(self, homeworld_url):
-        if homeworld_url:
-            response = requests.get(homeworld_url)
-            if response.status_code == 200:
-                return response.json().get("name", "Desconocido")
-        return "Desconocido"
+#     def get_homeworld_name(self, homeworld_url):
+#         if homeworld_url:
+#             response = requests.get(homeworld_url)
+#             if response.status_code == 200:
+#                 return response.json().get("name", "Desconocido")
+#         return "Desconocido"
 
-# Uso del código
-starship_service = StarshipService()
-starships_with_pilots = starship_service.get_starships_with_pilots()
+# # Uso del código
+# starship_service = StarshipService()
+# starships_with_pilots = starship_service.get_starships_with_pilots()
 
-for starship in starships_with_pilots:
-    print(f"Nave: {starship['Nombre de la nave']} - Modelo: {starship['Modelo']}")
-    if starship['Pilotos']:
-        for pilot in starship['Pilotos']:
-            print(f"  Piloto: {pilot['Nombre']} - Género: {pilot['Género']} - Año de nacimiento: {pilot['Año de nacimiento']}")
-    else:
-        print("  No tiene pilotos asignados.")
+# for starship in starships_with_pilots:
+#     print(f"Nave: {starship['Nombre de la nave']} - Modelo: {starship['Modelo']}")
+#     if starship['Pilotos']:
+#         for pilot in starship['Pilotos']:
+#             print(f"  Piloto: {pilot['Nombre']} - Género: {pilot['Género']} - Año de nacimiento: {pilot['Año de nacimiento']}")
+#     else:
+#         print("  No tiene pilotos asignados.")

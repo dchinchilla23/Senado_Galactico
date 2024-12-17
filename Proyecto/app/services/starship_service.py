@@ -19,6 +19,8 @@ class StarshipService:
                 for ship in starships
             ]
         return []  # Si la respuesta no es exitosa, devolvemos una lista vacía
+# #### corregido ok API Nave General (Java/Python)
+    
     
 ############  API Nave Especifico (Java/Python)  
     def get_specific_starship(self):
@@ -38,32 +40,34 @@ class StarshipService:
                 for ship in starships
             ]
         return []  
+############  API Nave Especifico (Java/Python)  
     
     # Método para obtener naves y los detalles de los pilotos asociados
-    def get_starships_with_pilots(self):
-        starships_with_pilots = []
-        response = requests.get(self.API_URLS)
-        if response.status_code == 200:
-            starships = response.json().get('results', [])
-            for starship in starships:
-                starship_data = {
-                    "Nombre de la nave": starship.get("name"),
-                    "Modelo": starship.get("model"),
-                    "Pilotos": []
-                }
-                # Obtenemos los pilotos asociados a la nave
-                pilots = starship.get("pilots", [])
-                for pilot_url in pilots:
-                    pilot_service = PilotService()
-                    pilot_data = pilot_service.get_pilot_details_from_url(pilot_url)
-                    starship_data["Pilotos"].append(pilot_data)
+    # def get_starships_with_pilots(self):
+    #     starships_with_pilots = []
+    #     response = requests.get(self.API_URLS)
+    #     if response.status_code == 200:
+    #         starships = response.json().get('results', [])
+    #         for starship in starships:
+    #             starship_data = {
+    #                 "Nombre de la nave": starship.get("name"),
+    #                 "Modelo": starship.get("model"),
+    #                 "Pilotos": []
+    #             }
+    #             # Obtenemos los pilotos asociados a la nave
+    #             pilots = starship.get("pilots", [])
+    #             for pilot_url in pilots:
+    #                 pilot_service = PilotService()
+    #                 pilot_data = pilot_service.get_pilot_details_from_url(pilot_url)
+    #                 starship_data["Pilotos"].append(pilot_data)
                 
-                starships_with_pilots.append(starship_data)
+    #             starships_with_pilots.append(starship_data)
 
-        return starships_with_pilots
+    #     return starships_with_pilots
 
 # CREACION CLASE PILOTO PARA OBTENER LOS DATOS 
-class Pilotos:
+
+class List_pilotos:
     API_URL_PEOPLE = "https://swapi.py4e.com/api/people/"
     
     def __init__(self):
@@ -118,12 +122,3 @@ class Pilotos:
             if response.status_code == 200:
                 return response.json().get("name", "Desconocido")
         return "Desconocido"
-
-# # Ejemplo de uso
-# if __name__ == "__main__":
-#     pilotos_service = Pilotos()
-#     pilotos_data = pilotos_service.get_all_pilots()
-    
-#     # Imprimir el resultado
-#     for pilot in pilotos_data:
-#         print(pilot)

@@ -28,6 +28,15 @@ def get_specific_starship():
     data = service.get_specific_starship()  # Llamamos al método con el ID de la nave
     return jsonify(data)  # Retornamos los datos
 
+# Ruta para obtener los detalles del piloto
+@bp.route('/api/nave/piloto', methods=['GET']) 
+def get_pilot_details():
+    service = PilotService()  # Instanciamos el servicio de pilotos
+    data = service.get_pilot_details()  # Llamamos al método para obtener todos los pilotos
+    return jsonify(data)
+
+
+
 
 
 # Ruta para actualizar la nave
@@ -38,12 +47,6 @@ def update_starships():
     response = service.update_starship(data)
     return jsonify(response)
 
-# Ruta para obtener los detalles del piloto
-@bp.route('/api/nave/piloto', methods=['GET'])
-def get_pilot_details():
-    pilot_service = PilotService()
-    data = pilot_service.get_pilot_details()  # Usar el método correcto aquí
-    return jsonify(data)
 
 
 
