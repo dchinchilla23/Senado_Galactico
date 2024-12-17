@@ -17,7 +17,7 @@ Para ejecutar el proyecto deberas estar en la carpeta Prueba \Senado_Galactico\\
 Luego una vez ejecutado el proceso veras en la consola la ip para poder acceder al html donde podras ejecutar cada uno de los llamados.  
 ![alt text](image.png)
 
-aplicacion arriba ![alt text](image-1.png)	
+aplicacion arriba !![alt text](image-2.png)
 
 🧑‍💻 Desarrollo y Contribución
 Si quieres contribuir a este proyecto, ¡serás muy bienvenido! Aquí están los pasos para comenzar:
