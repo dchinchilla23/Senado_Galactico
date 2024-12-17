@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, render_template
 from .services.starship_service import StarshipService
 from .services.pilot_service import PilotService
+from .services.VehicleService import VehicleService
 
 
 bp = Blueprint('api', __name__)
@@ -24,8 +25,8 @@ def get_general_starships():
 # Ruta para obtener la nave específica
 @bp.route('/api/nave/especifico/', methods=['GET'])
 def get_specific_starship():
-    service = StarshipService()  # Instanciamos el servicio
-    data = service.get_specific_starship()  # Llamamos al método con el ID de la nave
+    service = VehicleService()  # Instanciamos el servicio
+    data = service.get_all_vehicles()  # Llamamos al método con el ID de la nave
     return jsonify(data)  # Retornamos los datos
 
 # Ruta para obtener los detalles del piloto
@@ -40,22 +41,12 @@ def get_pilot_details():
 
 
 # Ruta para actualizar la nave
-@bp.route('/api/nave/actualizar', methods=['POST'])
-def update_starships():
-    data = request.get_json()
-    service = StarshipService()
-    response = service.update_starship(data)
-    return jsonify(response)
+@bp.route('/api/nave/objeto_nave', methods=['GET'])
+def get_all_vehicles():
+    service = VehicleService()  # Crear una instancia de VehicleService
+    data = service.get_all_vehicles()  # Llamar al método get_all_vehicles() de la instancia
+    return jsonify(data)  # Retornar los datos en formato JSON
 
-
-
-
-# Obtener el total de naves
-@bp.route('/api/nave/total', methods=['GET'])
-def get_total_starships():
-    service = StarshipService()
-    data = service.get_total_starships()
-    return jsonify(data)
 
 
 def register_routes(app):

@@ -41,9 +41,7 @@ class PilotService:
         return extracted_data
 
     def get_homeworld(self, url):
-        """
-        Obtiene el nombre del planeta de origen desde una URL.
-        """
+        # Obtiene el nombre del planeta de origen desde una URL.
         if not url:
             return "Desconocido"
         response = requests.get(url)
@@ -52,9 +50,7 @@ class PilotService:
         return "Desconocido"
 
     def get_details_from_urls(self, urls):
-        """
-        Recorre una lista de URLs y extrae nombres de recursos (vehículos, naves, especies, películas).
-        """
+        # Recorre una lista de URLs y extrae nombres de recursos (vehículos, naves, especies, películas).
         names = []
         for url in urls:
             response = requests.get(url)
@@ -65,9 +61,7 @@ class PilotService:
 
     
     def display_paginated_pilots(self, pilots, page_size=10):
-        
         # Muestra la información de los pilotos en bloques de tamaño fijo PAGINACIOIN.
-        
         total_pilots = len(pilots)
         start = 0
 
