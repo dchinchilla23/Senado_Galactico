@@ -10,6 +10,16 @@ bp = Blueprint('api', __name__)
 def home():
     return render_template('index.html')
 
+def register_routes(app):
+    app.register_blueprint(bp, url_prefix='/api') 
+    
+@bp.route('/api/nave/general', methods=['GET'])
+def get_general_starships():
+    service = StarshipService()  # Instanciamos el servicio
+    data = service.get_general_starships()  # Método para obtener naves generales
+    return jsonify(data) 
+
+
 
 # Ruta para obtener la nave específica
 @bp.route('/api/nave/especifico/', methods=['GET'])
