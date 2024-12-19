@@ -12,7 +12,8 @@ Asegúrate de tener instalados los siguientes requisitos:
 Si no tienes las dependencias instaladas, puedes hacerlo ejecutando:
 ## Bash
 - ** pip install -r requirements.txt**
-Para ejecutar el proyecto deberas estar en la carpeta Prueba \Senado_Galactico\\Proyecto\ y ejecutar el comando  run.py
+
+Para ejecutar el proyecto deberas estar en la carpeta Prueba \Senado_Galactico\\Proyecto\ y ejecutar el comando  python run.py
 
 Luego una vez ejecutado el proceso veras en la consola la ip para poder acceder al html donde podras ejecutar cada uno de los llamados.  
 ![alt text](image.png)
